@@ -1,8 +1,8 @@
+//questo codice muove le ali di trilly, attivando due MG995 con un PCA
+//sfruttando un ciclo hardcoded
+
 #include <Wire.h>
 #include <Adafruit_PWMServoDriver.h>
-
-Adafruit_PWMServoDriver pwm = Adafruit_PWMServoDriver();
-
 
 const int servoChannels[7] = {0, 1, 2, 3, 4, 5, 6};
 
@@ -13,10 +13,6 @@ const int SERVOMAXSX = 150;
 const int SERVOMINDX = 200;
 const int SERVOMAXDX = 450; //SERVO DESTRA TARATO!
 
-
-// manca il valore a riposo di entrambi
-// servo sinistra 50 -> 250 canale 0
-// servo destro 50(????) -> 450 canale 1
 
 void setup() {
   Serial.begin(9600);
@@ -30,10 +26,12 @@ void setup() {
   Serial.println("Driver PCA9685 inizializzato.");
 }
 
+
+
 void loop() {
   // Porta il servo a 0 gradi
   Serial.println("Muovo i servo a 0 gradi...");
-  for (int i = 0; i < 3; i++) {
+  for (int i = 0; i < 2; i++) {
     if(i == 0){
       pwm.setPWM(servoChannels[i], 0, SERVOMINDX);
     }
@@ -46,9 +44,9 @@ void loop() {
     Serial.println(" a 0 gradi.");
   }
 
-  delay(1000); 
+  delay(200); 
 
-  for (int i = 0; i < 3; i++) {
+  for (int i = 0; i < 2; i++) {
     if(i == 0){
       pwm.setPWM(servoChannels[i], 0, SERVOMAXDX);
     }
@@ -60,46 +58,4 @@ void loop() {
     Serial.println(" a 180 gradi.");
   }
 
-  delay(1000); 
-
-  for (int i = 0; i < 3; i++) {
-    if(i == 0){
-      pwm.setPWM(servoChannels[i], 0, SERVOMAXDX);
-    }
-    if(i == 1){
-      pwm.setPWM(servoChannels[i], 0, SERVOMINSX);
-    }
-    Serial.print("Servo ");
-    Serial.print(i);
-    Serial.println(" a 180 gradi.");
-  }
-
-  delay(1000); 
-
-    for (int i = 0; i < 3; i++) {
-    if(i == 0){
-      pwm.setPWM(servoChannels[i], 0, SERVOMINDX);
-    }
-    if(i == 1){
-      pwm.setPWM(servoChannels[i], 0, SERVOMAXSX);
-    }
-    Serial.print("Servo ");
-    Serial.print(i);
-    Serial.println(" a 180 gradi.");
-  }
-  
-  // for(int i = 0; i <5; i++){
-  //   pwm.setPWM(0, 0, SERVOMINDX + i*50);
-  //   delay(100);
-  //   pwm.setPWM(0, 0, 0);
-  // }
-
-  // int massimo = SERVOMINDX + 250;
-  // delay(250);
-
-  // for(int i = 0; i <5; i++){
-  //   pwm.setPWM(0, 0, massimo - i*50);
-  //   delay(250);
-  // }
-  delay(1500);
 }
