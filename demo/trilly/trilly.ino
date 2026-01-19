@@ -44,7 +44,7 @@ void loop() {
     Serial.println(" a 0 gradi.");
   }
 
-  delay(200); 
+  delay(400); 
 
   for (int i = 0; i < 2; i++) {
     if(i == 0){
@@ -56,6 +56,65 @@ void loop() {
     Serial.print("Servo ");
     Serial.print(i);
     Serial.println(" a 180 gradi.");
+  }
+
+  delay(400)
+
+  for (int i = 0; i < 2; i++) {
+    if(i == 0){
+      pwm.setPWM(servoChannels[i], 0, SERVOMINDX);
+    }
+    if(i == 1){
+      pwm.setPWM(servoChannels[i], 0, SERVOMINSX);
+    }
+
+    Serial.print("Servo ");
+    Serial.print(i);
+    Serial.println(" a 0 gradi.");
+  }
+
+  delay(400); 
+
+  for (int i = 0; i < 2; i++) {
+    if(i == 0){
+      pwm.setPWM(servoChannels[i], 0, SERVOMAXDX);
+    }
+    if(i == 1){
+      pwm.setPWM(servoChannels[i], 0, SERVOMAXSX);
+    }
+    Serial.print("Servo ");
+    Serial.print(i);
+    Serial.println(" a 180 gradi.");
+  }
+
+  //parte più veloce
+  for(ii = 0; ii<2; ii++){
+    for (int i = 0; i < 2; i++) {
+      if(i == 0){
+        pwm.setPWM(servoChannels[i], 0, SERVOMINDX);
+      }
+      if(i == 1){
+        pwm.setPWM(servoChannels[i], 0, SERVOMINSX);
+      }
+
+      Serial.print("Servo ");
+      Serial.print(i);
+      Serial.println(" a 0 gradi.");
+    }
+
+    delay(200); 
+
+    for (int i = 0; i < 2; i++) {
+      if(i == 0){
+        pwm.setPWM(servoChannels[i], 0, SERVOMAXDX);
+      }
+      if(i == 1){
+        pwm.setPWM(servoChannels[i], 0, SERVOMAXSX);
+      }
+      Serial.print("Servo ");
+      Serial.print(i);
+      Serial.println(" a 180 gradi.");
+    }
   }
 
 }
